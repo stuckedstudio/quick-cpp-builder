@@ -1,4 +1,4 @@
-//Too lazy to make a makefile for testing the build on this pc...
+//Created because I didn't want to learn to make make files... Sorry
 #include <iostream>
 #include <unistd.h>
 #include <filesystem>
