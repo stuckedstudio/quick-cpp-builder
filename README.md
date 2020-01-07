@@ -23,6 +23,9 @@ This program cannot yet be used globally on the system.
  
 #### step 4
 - Run the build.o file from the root of your project
+```bash
+ ./build.o
+ ```
 
 #### step 5
 - The finished build should be in the **Bin** folder.
