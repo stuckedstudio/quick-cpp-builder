@@ -35,3 +35,6 @@ This program is testing for its own existence in form of "build.o" and "projectB
 ### Args
 - As of this build it only supports the arg **no-clean** which tells the program to not remove the temporary .o files from the root of your project. 
 #### The **no-clean** arg does not work, for reasons that I'm too lazy to work out atm.
+
+
+##### The point of this program, was originally to compile a small other project located at [Here](https://github.com/stuckedstudio/Isthatit)
