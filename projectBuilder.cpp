@@ -25,6 +25,9 @@ int main(int argc, char** argv)
     root = strDir;
     std::cout << root << std::endl;
     source = root + "/Source";
+    std::string bin;
+    bin = root + "/Bin";
+    bool binExist;
     //Compiling all cpp files...
     for (const auto & entry : fs::directory_iterator(source))
     {
@@ -32,11 +35,18 @@ int main(int argc, char** argv)
         system(command.c_str());
     }
     //Preparing for the final compile
-    std::string compileCommand = "g++ -std=c++17 -o Bin/game.o ";
+    std::string compileCommand = "g++ -std=c++17 -o ";
+    compileCommand += bin;
+    compileCommand += "/exec.o ";
     for (const auto & entry : fs::directory_iterator(root))
     {
+        //Check if the Bin folder exists.
+        if(entry.path().generic_string().find("/Bin") != std::string::npos)
+        {
+            binExist = true;
+        }
         //Making sure that we are not trying to implement our project builder into the final release
-        if(entry.path().generic_string().find("build") == std::string::npos && entry.path().generic_string().find("projectBuilder") == std::string::npos)
+        if(entry.path().generic_string().find("build.o") == std::string::npos && entry.path().generic_string().find("projectBuilder") == std::string::npos)
         {
             //Making sure that we are not adding other junk files in the directory into the compiling process
             if(entry.path().generic_string().find(".o") != std::string::npos)
@@ -52,6 +62,11 @@ int main(int argc, char** argv)
                 compileCommand += tmp;
             }
         }
+    }
+    //Creates bin if not exist
+    if(!binExist)
+    {
+        fs::create_directory(bin);
     }
     //Showing the build command to make sure that we got the command we needed
     std::cout << "Full compile command: " << compileCommand << std::endl;
