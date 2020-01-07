@@ -8,15 +8,14 @@ std::string source;
 namespace fs = std::filesystem;
 int main(int argc, char** argv)
 {
+    std::string extraCommands = "";
     int clean = 1;
-    for(int i = 0; i <= argc;i++)
-    {
-        if(argv[i] == "no-clean")
-        {
-            clean = 0;
-        }
+    for(int i = 1; i < argc;i++)
+    {   
+        extraCommands += argv[i];
+        extraCommands += " ";
     }
-
+    std::cout << "Extra Commands: " << extraCommands << std::endl;
     //Getting the current directory and our Source directory
     root = fs::current_path();
     std::cout << "Root set as: " << root << std::endl;
@@ -31,7 +30,9 @@ int main(int argc, char** argv)
         system(command.c_str());
     }
     //Preparing for the final compile
-    std::string compileCommand = "g++ -std=c++17 -o ";
+    std::string compileCommand = "g++ -std=c++17 ";
+    compileCommand += extraCommands;
+    compileCommand += "-o ";
     compileCommand += bin;
     compileCommand += "/exec.o ";
     for (const auto & entry : fs::directory_iterator(root))
@@ -90,6 +91,6 @@ int main(int argc, char** argv)
         }
         system(removeCommand.c_str());
     }
-    std::cout << "Excecutable can be found at: " << bin << "/Exec.o" << std::endl;
+    std::cout << "Excecutable can be found at: " << bin << "/exec.o" << std::endl;
     return 0;
 }
