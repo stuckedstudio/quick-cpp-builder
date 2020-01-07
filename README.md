@@ -19,7 +19,7 @@ This program cannot yet be used globally on the system.
  ./setup.sh
  ```
 #### step 3
- - copy the **build.o** file into the root directory of your project. (Before the program is configurateable, it needs to have the source code in a folder called *Source*
+ - copy the **build.o** file into the root directory of your project. (Before the program becomes configurateable, it needs to have the source code in a folder called *Source*)
  
 #### step 4
 - Run the build.o file from the root of your project
