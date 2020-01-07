@@ -18,15 +18,11 @@ int main(int argc, char** argv)
     }
 
     //Getting the current directory and our Source directory
-
-    char strDir[129] = {0};
-    puts(getcwd(strDir, 128));
-    puts(strDir);
-    root = strDir;
-    std::cout << root << std::endl;
+    root = fs::current_path();
+    std::cout << "Root set as: " << root << std::endl;
     source = root + "/Source";
-    std::string bin;
-    bin = root + "/Bin";
+    std::string bin, userbin; /*TEMPORARY!!*/userbin = "/Bin";
+    bin = root + userbin;
     bool binExist;
     //Compiling all cpp files...
     for (const auto & entry : fs::directory_iterator(source))
@@ -41,7 +37,7 @@ int main(int argc, char** argv)
     for (const auto & entry : fs::directory_iterator(root))
     {
         //Check if the Bin folder exists.
-        if(entry.path().generic_string().find("/Bin") != std::string::npos)
+        if(entry.path().generic_string().find(userbin) != std::string::npos)
         {
             binExist = true;
         }
@@ -94,5 +90,6 @@ int main(int argc, char** argv)
         }
         system(removeCommand.c_str());
     }
+    std::cout << "Excecutable can be found at: " << bin << "/Exec.o" << std::endl;
     return 0;
 }
