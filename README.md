@@ -30,7 +30,7 @@ This program cannot yet be used globally on the system.
 #### step 5
 - The finished build should be in the **Bin** folder.
 ### Warning
-This program is testing for its own existence in form of "build.o" and "projectBuilder.cpp" if you rename the compiled program from "build.o" to anything else, it will most likely fail (or delete itself), unless changes are made to the projectBuilder.cpp file at line: 49 and 83 (of this build)
+This program is testing for its own existence in form of "build.o" and "projectBuilder.cpp" if you rename the compiled program from "build.o" to anything else, it will most likely fail (or delete itself), unless changes are made to the projectBuilder.cpp file at line: 49 and 83 (of this build) !!!This issue will be adressed with the Json update!!!
 
 ### Args
 - As of this build it only supports the arg **no-clean** which tells the program to not remove the temporary .o files from the root of your project.
