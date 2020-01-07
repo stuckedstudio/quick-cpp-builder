@@ -9,11 +9,27 @@ namespace fs = std::filesystem;
 int main(int argc, char** argv)
 {
     std::string extraCommands = "";
+    std::string extraEndCommands = "";
     int clean = 1;
     for(int i = 1; i < argc;i++)
     {   
-        extraCommands += argv[i];
-        extraCommands += " ";
+        if(std::string(argv[i]) == "--no-clean")
+        {
+                clean = 0;     
+        }
+        else if(std::string(argv[i]).find("--end-args=") != std::string::npos)
+        {
+            extraEndCommands += std::string(argv[i]).substr(std::string(argv[i]).find("=")+1,std::string(argv[i]).size()-(std::string(argv[i]).find("=")+1));
+            extraEndCommands += " ";
+        }
+        
+        else
+        {
+            extraCommands += argv[i];
+            extraCommands += " ";
+        }
+        
+       
     }
     std::cout << "Extra Commands: " << extraCommands << std::endl;
     //Getting the current directory and our Source directory
@@ -26,7 +42,8 @@ int main(int argc, char** argv)
     //Compiling all cpp files...
     for (const auto & entry : fs::directory_iterator(source))
     {
-        std::string command = "g++ -std=c++17 -c " + entry.path().generic_string();
+        std::string command = "g++ -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
+        std::cout << "Executing : " << command << std::endl;
         system(command.c_str());
     }
     //Preparing for the final compile
@@ -65,6 +82,8 @@ int main(int argc, char** argv)
     {
         fs::create_directory(bin);
     }
+    //Adding end-args (Due to the fact that g++ cares about argument placement...)
+    compileCommand += extraEndCommands;
     //Showing the build command to make sure that we got the command we needed
     std::cout << "Full compile command: " << compileCommand << std::endl;
     //Running the build.
