@@ -37,7 +37,11 @@ This program is testing for its own existence in form of "build.o" and "projectB
 ```bash
 ./build.o [g++ arg1] [g++ arg2] [g++ arg N]...
 ```
-#### The **no-clean** arg does not work, for reasons that I'm too lazy to work out atm.
+- Some programs require using arguments at the end of the g++ command, for this you can use:
+```bash
+./build.o [g++ arg1] [g++ arg2] [g++ arg N]... --end-arg=[g++ end arg1] --end-arg=[g++ end argN]...
+```
+#### ~~The **no-clean** arg does not work, for reasons that I'm too lazy to work out atm.~~ This has been fixed :)
 
 
 ##### The point of this program, was originally to compile a small other project located at [Here](https://github.com/stuckedstudio/Isthatit)
