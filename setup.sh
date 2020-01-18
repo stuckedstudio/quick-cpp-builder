@@ -1,6 +1,6 @@
 #!/bin/bash
 if ! type g++ &> /dev/null; then
-  echo "g++ was not found - Please install it, and run this program again after."
+  echo "g++ was not found - Please install it, and then run this program again."
 else
 	g++ -std=c++17 projectBuilder.cpp -o build.o
 
