@@ -5,6 +5,7 @@
 //Defining our search area for cpp files
 std::string root;
 std::string source;
+bool includeEngine = false;
 namespace fs = std::filesystem;
 int main(int argc, char** argv)
 {
@@ -16,6 +17,10 @@ int main(int argc, char** argv)
         if(std::string(argv[i]) == "--no-clean")
         {
                 clean = 0;     
+        }
+        if(std::string(argv[i]) == "--Engine")
+        {
+                includeEngine = true;     
         }
         else if(std::string(argv[i]).find("--end-args=") != std::string::npos)
         {
@@ -35,9 +40,21 @@ int main(int argc, char** argv)
     //Getting the current directory and our Source directory
     root = fs::current_path();
     std::cout << "Root set as: " << root << std::endl;
-    source = root + "/Source";
-    std::string bin, userbin; /*TEMPORARY!!*/userbin = "/Bin";
-    bin = root + userbin;
+    std::string bin, userbin, engine; /*TEMPORARY!!*/userbin = "/Bin";engine = "/Engine";
+    if(!includeEngine)
+    {
+        source = root + "/Source";
+        bin = root + userbin;
+    }
+    else
+    {
+        source = root + engine + "/Source";
+        bin = root + engine + userbin;
+    }
+    
+    
+    
+    
     bool binExist;
     //Compiling all cpp files...
     for (const auto & entry : fs::directory_iterator(source))
@@ -55,10 +72,11 @@ int main(int argc, char** argv)
     for (const auto & entry : fs::directory_iterator(root))
     {
         //Check if the Bin folder exists.
-        if(entry.path().generic_string().find(userbin) != std::string::npos)
-        {
-            binExist = true;
-        }
+            if(entry.path().generic_string().find(bin) != std::string::npos)
+            {
+                binExist = true;
+            }
+        
         //Making sure that we are not trying to implement our project builder into the final release
         if(entry.path().generic_string().find("build.o") == std::string::npos && entry.path().generic_string().find("projectBuilder") == std::string::npos)
         {
