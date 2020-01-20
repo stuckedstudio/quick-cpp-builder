@@ -66,7 +66,7 @@ int main(int argc, char** argv)
     if(includeEngine)
     {
         std::string engineMainCompile = "g++ -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
-        std::cout << "Engine Included - Executing root main.cpp compile... " << engineMainCompile;
+        std::cout << "Engine Included - Executing root main.cpp compile... " << engineMainCompile << std::endl;
         system(engineMainCompile.c_str());
     }
     //Preparing for the final compile
