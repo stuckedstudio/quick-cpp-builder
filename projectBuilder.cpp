@@ -63,6 +63,12 @@ int main(int argc, char** argv)
         std::cout << "Executing : " << command << std::endl;
         system(command.c_str());
     }
+    if(includeEngine)
+    {
+        std::string engineMainCompile = "g++ -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
+        std::cout << "Engine Included - Executing root main.cpp compile... " << engineMainCompile;
+        system(engineMainCompile.c_str());
+    }
     //Preparing for the final compile
     std::string compileCommand = "g++ -std=c++17 ";
     compileCommand += extraCommands;
