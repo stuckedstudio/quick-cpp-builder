@@ -1,4 +1,4 @@
-//Created because I didn't want to learn to make make files... Sorry
+//Created because I didn't want to learn to make makefiles... Sorry
 #include <iostream>
 #include <unistd.h>
 #include <filesystem>
