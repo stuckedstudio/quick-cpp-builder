@@ -106,6 +106,13 @@ int main(int argc, char** argv)
     {
         fs::create_directory(bin);
     }
+    for (const auto & entry : fs::directory_iterator(bin))
+    {
+     if(entry.path().generic_string().find(".o") != std::string::npos)
+     {
+         system("rm *.o");
+     }
+    }
     //Adding end-args (Due to the fact that g++ cares about argument placement...)
     compileCommand += extraEndCommands;
     //Showing the build command to make sure that we got the command we needed
@@ -134,6 +141,21 @@ int main(int argc, char** argv)
         }
         system(removeCommand.c_str());
     }
+    bool complete = false;
+    for (const auto & entry : fs::directory_iterator(bin))
+    {
+     if(entry.path().generic_string().find(".o") != std::string::npos)
+     {
+         complete = true;
+     }
+    }
+    if(complete)
+    {
     std::cout << "Excecutable can be found at: " << bin << "/exec.o" << std::endl;
     return 0;
+    }
+    else
+    {
+     return 1;   
+    }
 }
