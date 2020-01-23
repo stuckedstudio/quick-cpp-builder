@@ -76,7 +76,7 @@ int main(int argc, char** argv)
         std::string command = "";
         if(clang)
         {
-           command = "clang++ -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
+           command = std::string(getenv("CXX")) + " -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
         }
         else
         {
@@ -90,7 +90,7 @@ int main(int argc, char** argv)
         std::string engineMainCompile = "";
         if(clang)
         {
-           engineMainCompile = "clang++ -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
+           engineMainCompile = std::string(getenv("CXX")) + " -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
 
         }
         else
@@ -105,7 +105,7 @@ int main(int argc, char** argv)
     std::string compileCommand = "";
     if(clang)
     {
-        compileCommand = "clang++ -std=c++17 ";   
+        compileCommand = std::string(getenv("CXX")) + " -std=c++17 ";   
     }
     else
     {
