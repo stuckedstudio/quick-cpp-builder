@@ -7,6 +7,7 @@ std::string root;
 std::string source;
 bool includeEngine = false;
 namespace fs = std::filesystem;
+int clang = 0;
 int main(int argc, char** argv)
 {
     std::string extraCommands = "";
@@ -17,6 +18,13 @@ int main(int argc, char** argv)
         if(std::string(argv[i]) == "--no-clean")
         {
                 clean = 0;     
+        }
+        
+        if(std::string(argv[i]) == "--clang")
+        {
+                clang = 1;
+                extraEndCommands += "-lc++abi ";
+                extraEndCommands += "-lstdc++fs ";
         }
         if(std::string(argv[i]) == "--Engine")
         {
@@ -35,6 +43,12 @@ int main(int argc, char** argv)
         }
         
        
+    }
+    if(std::string(getenv("CXX")).find("clang++") != std::string::npos && clang == 0)
+    {    
+                clang = 1;
+                extraEndCommands += "-lc++abi ";
+                extraEndCommands += "-lstdc++fs ";
     }
     std::cout << "Extra Commands: " << extraCommands << std::endl;
     //Getting the current directory and our Source directory
@@ -59,18 +73,44 @@ int main(int argc, char** argv)
     //Compiling all cpp files...
     for (const auto & entry : fs::directory_iterator(source))
     {
-        std::string command = "g++ -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
+        std::string command = "";
+        if(clang)
+        {
+           command = "clang++ -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
+        }
+        else
+        {
+            command = "g++ -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
+        }
         std::cout << "Executing : " << command << std::endl;
         system(command.c_str());
     }
     if(includeEngine)
     {
-        std::string engineMainCompile = "g++ -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
+        std::string engineMainCompile = "";
+        if(clang)
+        {
+           engineMainCompile = "clang++ -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
+
+        }
+        else
+        {
+            engineMainCompile = "g++ -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
+        }
         std::cout << "Engine Included - Executing root main.cpp compile... " << engineMainCompile << std::endl;
         system(engineMainCompile.c_str());
     }
     //Preparing for the final compile
-    std::string compileCommand = "g++ -std=c++17 ";
+    
+    std::string compileCommand = "";
+    if(clang)
+    {
+        compileCommand = "clang++ -std=c++17 ";   
+    }
+    else
+    {
+        compileCommand = = "g++ -std=c++17 ";
+    }
     compileCommand += extraCommands;
     compileCommand += "-o ";
     compileCommand += bin;
