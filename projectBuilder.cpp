@@ -109,7 +109,7 @@ int main(int argc, char** argv)
     }
     else
     {
-        compileCommand = = "g++ -std=c++17 ";
+        compileCommand = "g++ -std=c++17 ";
     }
     compileCommand += extraCommands;
     compileCommand += "-o ";
