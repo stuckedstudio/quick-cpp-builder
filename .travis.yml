@@ -15,7 +15,6 @@ before_script:
   - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-8\" CC=\"clang-8\"; fi"
 compiler: 
   - clang
-  - g++
 dist: bionic
 language: cpp
 os: linux
