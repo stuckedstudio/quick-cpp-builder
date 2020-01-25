@@ -184,7 +184,7 @@ int main(int argc, char** argv)
     bool complete = false;
     for (const auto & entry : fs::directory_iterator(bin))
     {
-     if(entry.path().generic_string().find(".o") != std::string::npos)
+     if(entry.path().generic_string().find("application") != std::string::npos)
      {
          complete = true;
      }
