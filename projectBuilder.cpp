@@ -114,7 +114,7 @@ int main(int argc, char** argv)
     compileCommand += extraCommands;
     compileCommand += "-o ";
     compileCommand += bin;
-    compileCommand += "/exec.o ";
+    compileCommand += "/application ";
     for (const auto & entry : fs::directory_iterator(root))
     {
         //Check if the Bin folder exists.
@@ -191,7 +191,7 @@ int main(int argc, char** argv)
     }
     if(complete)
     {
-    std::cout << "Excecutable can be found at: " << bin << "/exec.o" << std::endl;
+    std::cout << "Excecutable can be found at: " << bin << "/application" << std::endl;
     return 0;
     }
     else
