@@ -1,0 +1,27 @@
+--- 
+addons: 
+  apt: 
+    packages: 
+      - g++-8
+      - clang-8
+      - libgcc-8-dev
+      - llvm-8-dev
+      - libomp-8-dev
+      - libc++abi-dev
+    sources: 
+      - ubuntu-toolchain-r-test
+before_script: 
+  - "if [ \"$CXX\" = \"g++\" ]; then export CXX=\"g++-8\" CC=\"gcc-8\"; fi"
+  - "if [ \"$CXX\" = \"clang++\" ]; then export CXX=\"clang++-8\" CC=\"clang-8\"; fi"
+compiler: 
+  - clang
+  - g++
+dist: bionic
+language: cpp
+os: linux
+script: - |
+      echo \"currently using $CXX\"
+      if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++17 projectBuilder.cpp -o build.o -lc++abi -lstdc++fs ;fi
+      if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++17 projectBuilder.cpp -o build.o ;fi
+notifications:
+  email: false
