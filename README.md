@@ -1,4 +1,5 @@
 # quick-cpp-builder
+[![Build Status](https://travis-ci.com/stuckedstudio/quick-cpp-builder.svg?branch=master)](https://travis-ci.com/stuckedstudio/quick-cpp-builder)
 A small program doing the work of a makefile (or something)
 
 Working on adding settings through a .json file
