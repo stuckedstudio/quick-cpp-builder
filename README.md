@@ -5,7 +5,7 @@ A small program doing the work of a makefile (or something)
 
 Working on adding settings through a .json file
 
-Right now, it's using the g++ compiler with -std=c++17, this will become easy to change once the Json settings are implemented.
+Right now, it's using either the g++ or clang++ compiler with -std=c++17, this will become easy to change once the Json settings are implemented. Clang will be selected with the --clang argument or by having the enviroment variable CXX set to clang++-8
 
 This program cannot yet be used globally on the system.
 ### Setup
