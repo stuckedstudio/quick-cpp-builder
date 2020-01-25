@@ -19,9 +19,10 @@ compiler:
 dist: bionic
 language: cpp
 os: linux
-script: - |
-      echo \"currently using $CXX\"
-      if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++17 projectBuilder.cpp -o build.o -lc++abi -lstdc++fs ;fi
-      if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++17 projectBuilder.cpp -o build.o ;fi
+script: 
+- |
+    echo \"currently using $CXX\"
+    if [ \"$CXX\" = \"clang++-8\" ]; then clang++ -std=c++17 projectBuilder.cpp -o build.o -lc++abi -lstdc++fs ;fi
+    if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++17 projectBuilder.cpp -o build.o ;fi
 notifications:
   email: false
