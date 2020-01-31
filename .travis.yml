@@ -25,6 +25,6 @@ script:
     if [ \"$CXX\" = \"g++-8\" ]; then g++ -std=c++17 projectBuilder.cpp -o quickbuild -lstdc++fs ;fi
     git clone --recursive https://github.com/stuckedstudio/DummyFiles.git
     mv -r DummyFiles Source
-    build.o -std=c++17
+    ./build.o -std=c++17
 notifications:
   email: false
