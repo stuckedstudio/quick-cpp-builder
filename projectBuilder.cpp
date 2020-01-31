@@ -44,7 +44,17 @@ int main(int argc, char** argv)
         
        
     }
-    if(std::string(getenv("CXX")).find("clang++") != std::string::npos && clang == 0)
+    std::string CXX = "";
+    if(getenv("CXX") != NULL)
+    {
+        CXX = getenv("CXX");
+    }
+    else
+    {
+        CXX = "Unknown";
+    }
+    
+    if(CXX.find("clang++") != std::string::npos && clang == 0)
     {    
                 clang = 1;
                 extraEndCommands += "-lc++abi ";
