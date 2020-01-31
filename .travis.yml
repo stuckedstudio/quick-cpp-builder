@@ -28,7 +28,7 @@ script:
 - |
     mv DummyFiles Source
 - |
-    chmod +x build.o
-    ./build.o -D_REENTRANT
+    chmod +x quickbuild
+    ./quickbuild -D_REENTRANT
 notifications:
   email: false
