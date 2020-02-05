@@ -19,18 +19,18 @@ int main(int argc, char** argv)
         {
                 clean = 0;     
         }
-        if(std::string(argv[i]) == "--debug")
+        else if(std::string(argv[i]) == "--debug")
         {
             extraCommands += "-g ";
         }
         
-        if(std::string(argv[i]) == "--clang")
+        else if(std::string(argv[i]) == "--clang")
         {
                 clang = 1;
                 extraEndCommands += "-lc++abi ";
                 extraEndCommands += "-lstdc++fs ";
         }
-        if(std::string(argv[i]) == "--Engine")
+        else if(std::string(argv[i]) == "--Engine")
         {
                 includeEngine = true;     
         }
