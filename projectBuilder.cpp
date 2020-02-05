@@ -19,6 +19,10 @@ int main(int argc, char** argv)
         {
                 clean = 0;     
         }
+        if(std::string(argv[i]) == "--debug")
+        {
+            extraCommands += "-g ";
+        }
         
         if(std::string(argv[i]) == "--clang")
         {
