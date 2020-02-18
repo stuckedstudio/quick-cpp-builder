@@ -88,6 +88,8 @@ int main(int argc, char** argv)
     for (const auto & entry : fs::directory_iterator(source))
     {
         std::string command = "";
+        if(entry.path().generic_string().find(".cpp") != std::string::npos)
+        {
         if(clang)
         {
            command = std::string(getenv("CXX")) + " -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
@@ -98,6 +100,7 @@ int main(int argc, char** argv)
         }
         std::cout << "Executing : " << command << std::endl;
         system(command.c_str());
+        }
     }
     if(includeEngine)
     {
