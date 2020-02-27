@@ -24,7 +24,7 @@ int main(int argc, char** argv)
         {
                 extraCommands += "-g ";
         }
-        else if(argv[i] == "--windows")
+        else if(std::string(argv[i]) == "--windows")
         {
                 windows = 1;
         }
@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     std::string CXX = "";
     if(getenv("CXX") != NULL)
     {
-        CXX = getenv("CXX");
+        CXX = std::string(getenv("CXX"));
     }
     else
     {
