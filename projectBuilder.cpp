@@ -75,7 +75,7 @@ int main(int argc, char** argv)
     if((CXX.find("clang++") != std::string::npos && clang == 0) || CXX.find("x86_64-w64-mingw32-g++") != std::string::npos)
     {    
                 clang = 1;
-                extraEndCommands += "-lc++abi ";
+                //extraEndCommands += "-lc++abi ";
                 extraEndCommands += "-lstdc++fs ";
     }
     std::cout << "Extra Commands: " << extraCommands << std::endl;
