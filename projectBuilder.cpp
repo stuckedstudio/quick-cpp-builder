@@ -22,11 +22,11 @@ int main(int argc, char** argv)
         }
         else if(std::string(argv[i]) == "--debug")
         {
-            extraCommands += "-g ";
+                extraCommands += "-g ";
         }
         else if(std::string(argv[i]) == "--windows")
         {
-            windows = 1;
+                windows = 1;
         }
         else if(std::string(argv[i]) == "--clang")
         {
