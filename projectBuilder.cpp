@@ -24,7 +24,7 @@ int main(int argc, char** argv)
         {
                 extraCommands += "-g ";
         }
-        else if(std::string(argv[i]) == "--windows")
+        else if(argv[i] == "--windows")
         {
                 windows = 1;
         }
