@@ -18,24 +18,29 @@ int main(int argc, char** argv)
     {   
         if(std::string(argv[i]) == "--no-clean")
         {
+                std::cout << "Not cleaning"<<std::endl;
                 clean = 0;     
         }
         else if(std::string(argv[i]) == "--debug")
         {
+                std::cout << "Debugging enabled"<<std::endl;
                 extraCommands += "-g ";
         }
         else if(std::string(argv[i]) == "--windows")
         {
+                std::cout << "Building Windows Version 64bit"<<std::endl;
                 windows = 1;
         }
         else if(std::string(argv[i]) == "--clang")
         {
+                std::cout << "Using Clang"<<std::endl;
                 clang = 1;
                 //extraEndCommands += "-lc++abi ";
                 extraEndCommands += "-lstdc++fs ";
         }
         else if(std::string(argv[i]) == "--Engine")
         {
+                std::cout << "Searching Engine folder"<<std::endl;
                 includeEngine = true;     
         }
         else if(std::string(argv[i]).find("--end-args=") != std::string::npos)
