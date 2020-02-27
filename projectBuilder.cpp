@@ -7,13 +7,13 @@ std::string root;
 std::string source;
 bool includeEngine = false;
 namespace fs = std::filesystem;
+int windows = 0;
 int clang = 0;
+int clean = 1;
 int main(int argc, char** argv)
 {
     std::string extraCommands = "";
     std::string extraEndCommands = "";
-    int clean = 1;
-    int windows = 0;
     for(int i = 1; i < argc;i++)
     {   
         if(std::string(argv[i]) == "--no-clean")
