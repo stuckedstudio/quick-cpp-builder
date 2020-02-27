@@ -88,7 +88,7 @@ int main(int argc, char** argv)
     }
     std::cout << "Extra Commands: " << extraCommands << std::endl;
     //Getting the current directory and our Source directory
-    root = fs::current_path();
+    root = fs::current_path().generic_string();
     std::cout << "Root set as: " << root << std::endl;
     std::string bin = "";
     std::string userbin = "";
