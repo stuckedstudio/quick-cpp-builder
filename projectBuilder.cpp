@@ -56,6 +56,10 @@ int main(int argc, char** argv)
     if(getenv("CXX") != NULL)
     {
         CXX = std::string(getenv("CXX"));
+        if(windows == 1)
+        {
+            CXX = "x86_64-w64-mingw32-g++";
+        }
     }
     else
     {
