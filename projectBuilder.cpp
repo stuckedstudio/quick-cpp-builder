@@ -101,7 +101,7 @@ int main(int argc, char** argv)
         source = root + "/Source";
         std::cout << "Setting Source folder to " << source << std::endl;
         bin = root + userbin;
-        std::cout << "Setting bin folder to " << source << std::endl;
+        std::cout << "Setting bin folder to " << bin << std::endl;
     }
     else
     {
@@ -117,6 +117,7 @@ int main(int argc, char** argv)
     for (const auto & entry : fs::directory_iterator(source))
     {
         std::string command = "";
+        std::cout << "Searching for cpp files..." << std::endl;
         if(entry.path().generic_string().find(".cpp") != std::string::npos)
         {
         if(clang)
