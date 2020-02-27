@@ -90,7 +90,12 @@ int main(int argc, char** argv)
     //Getting the current directory and our Source directory
     root = fs::current_path();
     std::cout << "Root set as: " << root << std::endl;
-    std::string bin, userbin, engine; /*TEMPORARY!!*/userbin = "/Bin";engine = "/Engine";
+    std::string bin = "";
+    std::string userbin = "";
+    std::string engine = ""; 
+    /*TEMPORARY!!*/
+    userbin = "/Bin";
+    engine = "/Engine";
     if(!includeEngine)
     {
         source = root + "/Source";
