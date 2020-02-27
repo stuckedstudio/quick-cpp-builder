@@ -122,7 +122,7 @@ int main(int argc, char** argv)
         {
         if(clang)
         {
-           command = std::string(getenv("CXX")) + " -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
+           command = CXX + " -std=c++17 -c " + extraCommands + " " + entry.path().generic_string() + " " + extraEndCommands;
         }
         else
         {
