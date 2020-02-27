@@ -13,6 +13,7 @@ int main(int argc, char** argv)
     std::string extraCommands = "";
     std::string extraEndCommands = "";
     int clean = 1;
+    int windows = 0;
     for(int i = 1; i < argc;i++)
     {   
         if(std::string(argv[i]) == "--no-clean")
@@ -22,6 +23,10 @@ int main(int argc, char** argv)
         else if(std::string(argv[i]) == "--debug")
         {
             extraCommands += "-g ";
+        }
+        else if(std::string(argv[i]) == "--windows")
+        {
+            windows = 1;
         }
         
         else if(std::string(argv[i]) == "--clang")
@@ -55,10 +60,19 @@ int main(int argc, char** argv)
     }
     else
     {
-        CXX = "Unknown";
+        
+        if(windows == 1)
+        {
+            CXX = "x86_64-w64-mingw32-g++";
+        }
+        else
+        {
+            CXX = "Unknown";
+        }
+        
     }
     
-    if(CXX.find("clang++") != std::string::npos && clang == 0)
+    if((CXX.find("clang++") != std::string::npos && clang == 0) || CXX.find("x86_64-w64-mingw32-g++") != std::string::npos)
     {    
                 clang = 1;
                 extraEndCommands += "-lc++abi ";
