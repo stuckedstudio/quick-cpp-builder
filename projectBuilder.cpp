@@ -99,7 +99,9 @@ int main(int argc, char** argv)
     if(!includeEngine)
     {
         source = root + "/Source";
+        std::cout << "Setting Source folder to " << source << std::endl;
         bin = root + userbin;
+        std::cout << "Setting bin folder to " << source << std::endl;
     }
     else
     {
