@@ -28,11 +28,10 @@ int main(int argc, char** argv)
         {
             windows = 1;
         }
-        
         else if(std::string(argv[i]) == "--clang")
         {
                 clang = 1;
-                extraEndCommands += "-lc++abi ";
+                //extraEndCommands += "-lc++abi ";
                 extraEndCommands += "-lstdc++fs ";
         }
         else if(std::string(argv[i]) == "--Engine")
