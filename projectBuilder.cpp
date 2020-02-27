@@ -114,10 +114,10 @@ int main(int argc, char** argv)
     
     bool binExist;
     //Compiling all cpp files...
+    std::cout << "Searching for cpp files..." << std::endl;
     for (const auto & entry : fs::directory_iterator(source))
     {
         std::string command = "";
-        std::cout << "Searching for cpp files..." << std::endl;
         if(entry.path().generic_string().find(".cpp") != std::string::npos)
         {
         if(clang)
@@ -137,7 +137,7 @@ int main(int argc, char** argv)
         std::string engineMainCompile = "";
         if(clang)
         {
-           engineMainCompile = std::string(getenv("CXX")) + " -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
+           engineMainCompile = CXX + " -std=c++17 -c " + extraCommands + " " + "main.cpp" + " " + extraEndCommands;
 
         }
         else
@@ -152,7 +152,7 @@ int main(int argc, char** argv)
     std::string compileCommand = "";
     if(clang)
     {
-        compileCommand = std::string(getenv("CXX")) + " -std=c++17 ";   
+        compileCommand = CXX + " -std=c++17 ";   
     }
     else
     {
