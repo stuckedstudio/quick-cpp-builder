@@ -193,6 +193,8 @@ int main(int argc, char** argv)
     {
         fs::create_directory(bin);
     }
+    fs::create_directory(bin); //Sometimes binExist returns true even if the Bin folder is not there
+    //Have yet to figure out why
     for (const auto & entry : fs::directory_iterator(bin))
     {
      if(entry.path().generic_string().find(".o") != std::string::npos)
